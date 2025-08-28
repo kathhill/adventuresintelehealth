@@ -1,0 +1,71 @@
+---
+import BaseLayout from "@components/base/BaseLayout.astro";
+import { markdownify } from "@lib/textConverter";
+import Button from "@components/common/Button.astro";
+import type { HomeEntry } from "@/types";
+import { Image } from "astro:assets";
+
+interface Props {
+  entry: HomeEntry;
+}
+
+const { entry } = Astro.props;
+const { image, imageAlt, image2, image2Alt, title, content, button } =
+  entry.data;
+---
+
+<BaseLayout>
+  <!-- Banner -->
+  <section class="section">
+    <div class="container">
+      <div class="row justify-center">
+        <div class="text-center lg:col-7">
+          <div class="flex justify-center items-center">
+            {
+              image && (
+                <h1 class="blur-[0px] mb-4">
+                  <Image
+                    class=""
+                    src={image}
+                    alt={imageAlt}
+                    width={2048}
+                    height={2048}
+                    loading="eager"
+                  />
+                </h1>
+              )
+            }
+            {
+              image2 && (
+                <Image
+                  class="border-gray-400 border-2 rounded-full"
+                  src={image2}
+                  alt={image2Alt}
+                  width={125}
+                  height={125}
+                  loading="eager"
+                />
+              )
+            }
+            <!-- <h1 set:html={markdownify(title)} class="mb-4" /> -->
+          </div>
+          <p
+            set:html={markdownify(content)}
+            class="mb-8 text-white font-semibold"
+          />
+          {
+            button && (
+              <Button
+                label={button.label}
+                link={button.link}
+                newtab
+                hoverInvert
+                color="white"
+              />
+            )
+          }
+        </div>
+      </div>
+    </div>
+  </section>
+</BaseLayout>
