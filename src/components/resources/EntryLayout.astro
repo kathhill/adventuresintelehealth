@@ -1,0 +1,62 @@
+---
+import type { ResourcesEntry } from "@/types";
+import BaseLayout from "@components/base/BaseLayout.astro";
+import PageHeader from "@/components/common/PageHeader.astro";
+import { markdownify } from "@lib/textConverter";
+import { FaGithub } from "react-icons/fa";
+
+interface Props {
+  entry: ResourcesEntry;
+}
+
+const { entry } = Astro.props;
+const { title, description, resources } = entry.data;
+---
+
+<BaseLayout title={title} description={description}>
+  <PageHeader title={title} />
+  <section class="section-sm container">
+    <div class="row justify-center">
+      <div class="col-10 content glass rounded-lg p-4">
+        {
+          resources.map((resource) => (
+            <>
+              <div>
+                <div class="mt-8">
+                  <h3 set:html={markdownify(resource.title)} />
+                </div>
+                <div class="-mt-4 flex items-center">
+                  {resource.github && (
+                    <a
+                      aria-label="Github"
+                      href={resource.github}
+                      target="_blank"
+                      rel="noopener noreferrer nofollow"
+                      class="mr-2 glass-t shadow-none rounded flex h-8 w-8 text-txt-p dark:text-darkmode-txt-p items-center justify-center text-center"
+                    >
+                      <FaGithub className="h-6 w-6" />
+                    </a>
+                  )}
+                  {resource.technologies?.map((element: string) => (
+                    <li class="list-none">
+                      {/* Use markdownify to convert markdown to HTML for each technology */}
+                      <div
+                        class="mr-2 px-2 h-8 flex glass-t shadow-none rounded text-txt-p dark:text-darkmode-txt-p items-center justify-center text-center"
+                        set:html={markdownify(element)}
+                      />
+                    </li>
+                  ))}
+                </div>
+              </div>
+              <div>
+                {resource.content?.map((element: string) => (
+                  <p set:html={markdownify(element)} />
+                ))}
+              </div>
+            </>
+          ))
+        }
+      </div>
+    </div>
+  </section>
+</BaseLayout>

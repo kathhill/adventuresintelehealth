@@ -1,4 +1,4 @@
 ---
-title: Poetry
-description: Jane's poems
+title: Gallery
+description: Greg's Gallery
 ---

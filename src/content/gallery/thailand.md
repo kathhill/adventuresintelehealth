@@ -1,5 +1,5 @@
 ---
-title: Where Giants Wade
+title: Thailand
 author: jane-doe
 date: 2024-01-15
 ---

@@ -1,5 +1,5 @@
 ---
-title: A Phantom of this Frozen Place
+title: Italy
 description: A complete example
 image: "@assets/poetry/phantom-of-this-frozen-place.jpg"
 imageAlt: Snow Leopard on a snowy mountain

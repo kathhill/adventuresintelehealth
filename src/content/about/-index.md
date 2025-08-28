@@ -1,7 +1,7 @@
 ---
-title: Hey, I'm Jane Doe!
+title: About Dr. Harmeling
 description: this is meta description
-image: "@assets/profile/jane-doe.jpg"
+image: "@assets/profile/greg-elephant.jpg"
 draft: false
 ---
 

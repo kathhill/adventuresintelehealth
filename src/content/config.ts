@@ -117,6 +117,17 @@ const poetry = defineCollection({
     }),
 });
 
+const gallery = defineCollection({
+  loader: glob({ pattern: "**\/[^_]*.{md,mdx}", base: "./src/content/gallery" }),
+  schema: ({ image }) =>
+    searchable.extend({
+      date: z.date().optional(),
+      image: image().optional(),
+      imageAlt: z.string().default(""),
+      author: reference("authors").optional(),
+    }),
+});
+
 const portfolio = defineCollection({
   loader: glob({
     pattern: "-index.{md,mdx}",
@@ -124,6 +135,23 @@ const portfolio = defineCollection({
   }),
   schema: searchable.extend({
     projects: z.array(
+      z.object({
+        title: z.string(),
+        github: z.string().optional(),
+        technologies: z.array(z.string()).optional(),
+        content: z.array(z.string()).optional(),
+      }),
+    ),
+  }),
+});
+
+const resources = defineCollection({
+  loader: glob({
+    pattern: "-index.{md,mdx}",
+    base: "./src/content/resources",
+  }),
+  schema: searchable.extend({
+    resources: z.array(
       z.object({
         title: z.string(),
         github: z.string().optional(),
@@ -173,7 +201,9 @@ export const collections = {
   home,
   indexCards,
   poetry,
+  gallery,
   portfolio,
+  resources,
   recipes,
   terms,
 };

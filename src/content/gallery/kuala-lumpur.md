@@ -1,5 +1,5 @@
 ---
-title: The Quiet Sky's Embrace
+title: Kuala Lumpur
 author: jane-doe
 date: 2024-05-15
 ---

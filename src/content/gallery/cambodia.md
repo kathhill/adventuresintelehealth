@@ -1,6 +1,5 @@
 ---
-title: Freedom's Cost
-author: john-doe
+title: Cambodia
 date: 2024-10-10
 ---
 
